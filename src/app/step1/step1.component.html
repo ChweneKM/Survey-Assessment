@@ -1,0 +1,58 @@
+<mat-card>
+<header>
+    <img src="assets/genex_logo - Copy.jpg" alt="logo" class="center" />
+</header>
+</mat-card>
+
+<h3 style="text-align: center">Feedback Suvery</h3>
+
+<form class="form" [formGroup]="validations_form"  >
+<mat-card >
+  
+        <mat-card-title>
+                1. Where you able to log into the insights platform?
+        </mat-card-title>
+
+        <br />
+
+        <mat-radio-group color="primary" formControlName="radio" class="form-controll" required aria-label="Select an option">
+                <mat-radio-button class="radio-button" value="1">Yes</mat-radio-button>
+                <mat-radio-button   class="radio-button" value="2"  (click)="toggle()">No</mat-radio-button>
+              </mat-radio-group>
+
+              
+              <div style="text-align:center"  class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.radio">
+                      <div style="color: rgb(104, 58, 31); font-size: 12px" class="error-message" *ngIf="validations_form.get('radio').hasError(validation.type) && (validations_form.get('radio').dirty || validations_form.get('radio').touched)">
+                        {{ validation.message }}
+                      </div>
+                    </ng-container>
+                  </div>
+
+              <ng-container *ngIf="show">
+                  <br />
+                    <div style="margin: 0 auto;text-align: left;">
+                        <div>
+                            <label>If checked 'No' specify (optional):</label>
+                            <div><textarea placeholder="Type your comment..." style="border-radius: 6px" rows="5" cols="46"></textarea></div>
+                        </div>
+                    </div>
+                </ng-container>         
+</mat-card>
+
+<br />
+
+<button style="float: right" routerLink='/step2'  mat-raised-button type="submit" [disabled]="!validations_form.valid">Next<mat-icon aria-hidden="false" >keyboard_arrow_right</mat-icon></button>
+<br />
+
+</form>
+
+<br />
+<br />
+
+        <mat-progress-bar style="height: 50px;" [color]="'accent'" [mode]="'determinate'" [value]="0">
+        </mat-progress-bar>
+        <h3 style="text-align: right">0%</h3>
+    
+
+
